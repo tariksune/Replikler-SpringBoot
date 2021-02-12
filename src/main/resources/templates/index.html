@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Quote Api</title>
+
+    <link rel="stylesheet"
+          href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+          integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
+          crossorigin="anonymous">
+</head>
+<body>
+
+    <div class="container my-2">
+        <h1>Quote List</h1>
+        <a th:href = "@{/newQuoteForm}" class="btn btn-primary btn-sm mb-3"> Add Quote </a>
+        <table border="1" class = "table table-striped table-resposive-md">
+            <thead>
+                <tr>
+                    <th>Quote Id</th>
+                    <th>Quote Name</th>
+                    <th>Quote Text</th>
+                    <th>Quote Link</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="quote : ${listQuotes}">
+                    <td th:text="${quote.quoteId}"></td>
+                    <td th:text="${quote.quoteName}"></td>
+                    <td th:text="${quote.quoteText}"></td>
+                    <td th:text="${quote.quoteLink}"></td>
+                    <td>
+                        <a th:href="@{/showFormForUpdate/{id}(id=${quote.id})}" class="btn btn-primary">Update</a>
+                        <a th:href="@{/deleteQuote/{id}(id=${quote.id})}" class="btn btn-danger">Delete</a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
+    </div>
+
+</body>
+</html>
